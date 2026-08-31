@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+  ::selection {
+    @apply bg-marigold-light text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid theme("colors.marigold.DEFAULT");
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest2 text-ink-faint;
+  }
+
+  /* The stitched thread — the site's signature divider.
+     A single hand-drawn-feeling line with a small knot mark,
+     symbolizing the three brands woven from one creator. */
+  .thread-divider {
+    position: relative;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      theme("colors.line") 0px,
+      theme("colors.line") 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+  .thread-divider::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: theme("colors.marigold.DEFAULT");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
